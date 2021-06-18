@@ -25,28 +25,28 @@ const students = [{
 
 
 // ==================LOOPING THROUGH THE DATA USING THE FOR LOOP=================
-console.log('=============FOR LOOP==============');
-for (index=0; index<persons.length; index++ ){
-    const person = persons[index];
-    console.log(person.firstName);
-    console.log(person.lastName);
-    console.log(person.occupation);
-    console.log(person.gender, '\n');
-}
+// console.log('=============FOR LOOP==============');
+// for (index=0; index<persons.length; index++ ){
+//     const person = persons[index];
+//     console.log(person.firstName);
+//     console.log(person.lastName);
+//     console.log(person.occupation);
+//     console.log(person.gender, '\n');
+// }
 
 //==========================USING THE MAP FUNCTION===============================
-console.log('=============MAP================');
-persons.map(({firstName, lastName, occupation, gender})=>{
-    return(
-        console.log(firstName),
-        console.log(lastName),
-        console.log(occupation),
-        console.log(gender, '\n')
-    )
-})
+// console.log('=============MAP================');
+// persons.map(({firstName, lastName, occupation, gender})=>{
+//     return(
+//         console.log(firstName),
+//         console.log(lastName),
+//         console.log(occupation),
+//         console.log(gender, '\n')
+//     )
+// })
 
 
-module.export= {
+module.exports= {
     persons,
     students
 }
