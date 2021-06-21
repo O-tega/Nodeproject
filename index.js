@@ -1,73 +1,62 @@
-
-
-// we call the exported data from the data.js in two ways
-
-// // 1. giving it another variable name
-// const data = require('./data')
-
-// console.log("===============By variable Name=================")
-// console.log(data)
-
-// // 2. destructing the student and the person object
-// console.log("===============By Destructing=================")
-// const {student, person} = require('./data')
-
-// console.log(student)
-// console.log(person)
-
-// Creating an http server
-// ===============================================================================
-
-const http = require('http');
-const readFileToServer = require('./test')
+// import 
+const express = require('express');
 const path = require('path')
-const {student, person} = require('./data')
+
+// File import
+const {student, persons} = require('./data')
+
+// initialize express
+const app = express();
+
+// set views directory
+app.set('views', path.join(__dirname, 'views'))
+
+// set static dir
+app.use(express.static(path.join(__dirname, 'public')))
 
 
-/**
- * this createServer method carries 2 parameters
- * 1.) the request object
- * 2.) the response object 
-*/
+//using the sendfile method to send html file
+// app.get('/', (req, res, next)=>{
+//     res.status(200).sendFile(__dirname + '/views/index.html');
+// });
 
-const server = http.createServer((req, res)=>{
-    if(req.url ==='/'){
-        res.writeHead(200, {'content-type':'text/html'});
-        const file = path.join(__dirname, 'public/index.html');
-        const data = readFileToServer(file)
-        res.write(data.file);
-        res.end();
-    }else if (req.url ==='/about'){
-        res.writeHead(200, {'content-type':'text/html'});
-        const about = path.join(__dirname, 'public/about.html')
-        const aboutData = readFileToServer(about)
-        res.write(aboutData.file);
-        res.end();
-    }else if(req.url ==='/contact'){
-        res.writeHead(200, {'content-type':'text/html'});
-        const contact = path.join(__dirname, 'public/contact.html')
-        const contactData = readFileToServer(contact)
-        res.write(contactData.file);
-        res.end();
-    }else if (req.url ==='/api/person'){
-        res.writeHead(200, {'content-type':'application/json'});
-        res.write(JSON.stringify(person));
-        res.end();
-    }else if (req.url ==='/api/student'){
-        res.writeHead(200, {'content-type':'application/json'});
-        res.write(JSON.stringify(student));
-        res.end();
-    }else{
-        res.writeHead(404, {'content-type':'text/html'});
-        res.write('<h1>Error 404</h1>\n Invalid request');
-        res.end();
-    }
-});
 
-const PORT = 5500;
 
-server.listen(PORT, () =>{
-    console.log(
-        `server is runningon http://localhost:${PORT} \nreload server to see new ;file changes `
-    );
-} )
+// routes
+// app.get('/', (req, res, next) => {
+//     res.status(200).send('<h1>Hello world from express</h1>');
+// });
+
+// app.get('/about', (req, res, next)=>{
+//     res.status(200).send('<h1>This is the about page</h1>')
+// })
+
+// app.get('/contact', (req, res, next)=>{
+//     res.status(200).send('<h1>This is the contact page</h1>')
+// })
+
+// setting routes using the render method
+app.get('/', (req, res, next)=>{
+    res.status(200).render('index.ejs')
+})
+app.get('/about', (req, res, next)=>{
+    res.status(200).render('about.ejs')
+})
+app.get('/contact', (req, res, next)=>{
+    res.status(200).render('contact.ejs')
+})
+
+// api routes
+app.get('/api/students', (req, res, next)=>{
+    res.status(200).json({
+        status: 'sucess',
+        message: student,
+    })
+})
+
+const PORT = process.env.port || 5000;
+
+//listen to port
+app.listen(PORT, () => {
+    console.log(`server is running on http://127.0.0.1:${PORT}\nor http://localhost:${PORT}`)
+})
