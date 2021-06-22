@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="http://localhost:5000/css/style.css">
+    <link rel="stylesheet" href="http://localhost:5000/css/bootstrap.min.css">
+</head>
+<body>
+    <header>
+        <nav class="bg-light">
+            <ul class="link">
+                <li class='link'><a href="/about-us">About</a></li>
+                <li class='link'><a href="/experience">Experience</a></li>
+                <li class='link'><a href="/Sign-up">Sign up</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="heading">
+        <h1>Sign-up/Login</h1>
+        <p>Sign up here if you do not have an account or click the login button if you do have an account </p>
+    </div>
+    
+<!-- creating the sign up form -->
+<div class="container-md">
+    <div class="row">
+        <div class="col-md-6">
+            <input 
+                type="text"
+                class="form-control"
+                placeholder="First Name"
+                id = "Firstname"
+            />
+        </div>
+        <div class="col-md-6">
+            <input 
+                type="text"
+                class="form-control"
+                placeholder="Last Name"
+                id = "Lastname"
+            />
+        </div>
+    </div>
+    <div class="row space">
+        <div class="col-md-4">
+            <input 
+                type="Email"
+                class="form-control"
+                placeholder="Enter your email"
+                id = "Email"
+            />
+        </div>
+        <div class="col-md-4">
+            <input 
+                type="text"
+                class="form-control"
+                placeholder="Enter your phone number"
+                id = "phoneNumber"
+            />
+        </div>
+        <div class="col-md-4">
+            <input 
+                type="text"
+                class="form-control"
+                placeholder="Enter your home address"
+                id = "address"
+            />
+        </div>
+    </div>
+    <input
+        type="button"
+        class="btn btn-outline-info"
+        value="submit"
+        id = "submit"  
+    />
+</div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+/* body {
+    background-color: aliceblue;
+} */
+
+.link{
+    display:inline-block;
+    padding:2px 3px;
+    margin:0;
+    font-size:small;
+}
+
+.container-md{
+    margin-left: 15% !important;    
+    width: 70% !important;
+    align-content: center !important;
+}
+.container-fluid > .img-fluid:hover{
+    background-color: rgba(#000000, #000000, #000000, 0.3);
+}
+.heading{
+    text-align: center;
+    padding:50px 0;
+}
+.container{
+    display: flex;
+    align-content: center !important;
+    text-align: center;
+}
+.span{
+    margin: 0;
+    padding: 0;
+}
+.space{
+    padding: 15px 0;
+}
+.col-md-4{
+    padding: 2px 0;
+}
+.col-md-6{
+    padding: 2px 0;
+}
+.btn{
+    margin: 0 38%;
+}

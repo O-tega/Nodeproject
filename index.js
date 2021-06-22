@@ -1,62 +1,67 @@
-// import 
+// import
 const express = require('express');
 const path = require('path')
 
-// File import
-const {student, persons} = require('./data')
+// files import
+const {students, persons} = require('./data')
 
 // initialize express
 const app = express();
 
-// set views directory
+// setting our views engine
+app.set('view engine', 'ejs');
+
+// static dir gotten from the code=====This enables us to render the ejs file
 app.set('views', path.join(__dirname, 'views'))
 
-// set static dir
-app.use(express.static(path.join(__dirname, 'public')))
+// static dir gotten from the URL
+app.use(express.static(path.join(__dirname, 'public')) )
 
+// Routing
+// We use app. get to route in express
+// in order for us to use the render method effectively, we have to use the ejs
+// this allows us to render the file sent instead of using send and sendFile
+app.get('/', (req, res, next) =>{
+    res.status(200).render('index.ejs');
+});
 
-//using the sendfile method to send html file
-// app.get('/', (req, res, next)=>{
-//     res.status(200).sendFile(__dirname + '/views/index.html');
-// });
+app.get('/about', (req, res, next) =>{
+    res.status(200).render('about.ejs');
+});
 
+app.get('/contact', (req, res, next) =>{
+    res.status(200).render('contact.ejs');
+});
 
-
-// routes
-// app.get('/', (req, res, next) => {
-//     res.status(200).send('<h1>Hello world from express</h1>');
-// });
-
-// app.get('/about', (req, res, next)=>{
-//     res.status(200).send('<h1>This is the about page</h1>')
-// })
-
-// app.get('/contact', (req, res, next)=>{
-//     res.status(200).send('<h1>This is the contact page</h1>')
-// })
-
-// setting routes using the render method
-app.get('/', (req, res, next)=>{
-    res.status(200).render('index.ejs')
+app.get('/about-us', (req, res, next) =>{
+    res.status(200).render('portfolio/about.ejs')
 })
-app.get('/about', (req, res, next)=>{
-    res.status(200).render('about.ejs')
+app.get('/experience', (req, res, next)=>{
+    res.status(200).render('portfolio/experience.ejs')
 })
-app.get('/contact', (req, res, next)=>{
-    res.status(200).render('contact.ejs')
+app.get('/sign-up', (req, res, quest)=>{
+    res.status(200).render('portfolio/signup.ejs')
 })
 
-// api routes
-app.get('/api/students', (req, res, next)=>{
+// Routing APIs
+app.get('/api/persons', (req, res, next) =>{
     res.status(200).json({
-        status: 'sucess',
-        message: student,
+        status:'Success',
+        message: persons
+    })
+
+app.get('/api/students', (req, res, next) =>{
+    res.status(200).json({
+        status: 'Success',
+        message: students
     })
 })
+})
 
-const PORT = process.env.port || 5000;
+// setting the port
+PORT = process.env.PORT || 5000;
 
-//listen to port
-app.listen(PORT, () => {
-    console.log(`server is running on http://127.0.0.1:${PORT}\nor http://localhost:${PORT}`)
+// Listening to port 
+app.listen(PORT, ()=>{
+    console.log(`The server is running on http://127.0.0.1:${PORT} \nor http://localhost:${PORT} `)
 })

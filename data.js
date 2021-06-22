@@ -1,4 +1,4 @@
-const person={
+const persons={
     firstname:"john",
     lasname:"Doe",
     hobbies:['coding', 'travelling', 'cooking'],
@@ -8,7 +8,7 @@ const person={
 };
 
 
-let student =[
+let students =[
     {name: "Mike"},
     {name: "Nike"},
     {name: "Praise"},
@@ -29,6 +29,6 @@ let student =[
 
 
 module.exports = {
-    person,
-    student
+    persons,
+    students
 }
