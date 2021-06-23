@@ -5,6 +5,10 @@ const path = require('path')
 // File import
 const {student, persons} = require('./data')
 
+//route imports
+const phoneRoutes = require('./routes/phones.routes');
+const homeRoutes = require('./routes/home.routes');
+
 // initialize express
 const app = express();
 
@@ -13,6 +17,22 @@ app.set('views', path.join(__dirname, 'views'))
 
 // set static dir
 app.use(express.static(path.join(__dirname, 'public')))
+
+//setting up request moddleware----------used to send data from front end to the server
+app.use(express.json());
+app.use(express.urlencoded({extended: false}));
+
+//globals
+app.use((req, res, next)=>{
+    req.server_url = 'http://localhost:5000/';
+    next();
+})
+
+//home routes
+app.use('/', homeRoutes);
+
+//phone routes
+app.use('/phones', phoneRoutes);
 
 
 //using the sendfile method to send html file

@@ -1,28 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+<!-- include head -->
+<%- include('./includes/head.ejs')  %> 
 <body>
-    <ul>
-        <li style='display: inline-block;'>
-            <a href="/">Home</a>
-            <a href="/about">About us</a>
-            <a href="/contact">Contact us</a>
-        </li>
-    </ul>
-    <p>
-        Here yoyu can find out our phone number and a description of our head office
-        <br/>
-        <p>
-            <strong>Tel</strong>: +234 080 9563 123
-        </p>
-        <p>
-            <strong>Email</strong>: shop@E-shop.com 
-        </p>
-    </p>
+    <!-- include navbar -->
+    <%- include('./includes/navbar.ejs')%>
+    
+    <form 
+        action="<%= server_url %>complain" 
+        method="POST"
+        enctype= multipart/formdata
+    >
+        <div class="container">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input 
+                            type="text"
+                            class="form-control"
+                            placeholder="enter firstname"
+                            name="firstname"
+                            />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input 
+                            type="text"
+                            class="form-control"
+                            placeholder="enter firstname"
+                            name="lastname"
+                            />
+                    </div>
+                </div>  
+            </div>
+            <div class="form-group">
+                <input 
+                    type="email" 
+                    class="form-control" 
+                    placeholder="enter your email"
+                    name="email" />
+            </div>
+            <div class="form-group">
+                <input type="file" class="form-control" 
+                name="file"/>
+            </div>
+            <div class="form-group">
+                <textarea 
+                    name="" 
+                    id="" 
+                    cols="30" 
+                    rows="10"
+                    class="form-control"
+                    name="description">
+                </textarea>
+            </div>
+            <div class="from-group">
+                <input type="submit" value="send info" class="btn btn-primary">
+            </div>
+        </div>
+    </form>
 </body>
 </html>
